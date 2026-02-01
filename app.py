@@ -113,7 +113,8 @@ grafico_senioridade = (
     .plot(kind='bar', title='distribuição de seniorade')
 )
 
-#plt.show()
+plt.show()
 
-grafico_media_salarios = sns.barplot(data=df_limpo, x='senioridade', y='usd')
-print(grafico_media_salarios)
+sns.barplot(data=df_limpo, x='senioridade', y='usd')
+
+plt.show()
