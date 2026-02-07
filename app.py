@@ -107,14 +107,25 @@ print(df_limpo.info())
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
 grafico_senioridade = (
     df_limpo['senioridade']
     .value_counts()
     .plot(kind='bar', title='distribuição de seniorade')
 )
 
-plt.show()
+ordem = df_limpo.groupby('senioridade')['usd'].mean().sort_values(ascending=True).index
 
-sns.barplot(data=df_limpo, x='senioridade', y='usd')
+plt.figure(figsize=(8,5))
+sns.barplot(data=df_limpo, x='senioridade', y='usd', order=ordem)
+plt.title("Salário médio por nível se senioridade")
+plt.xlabel("nível de senioridade")
+plt.ylabel("média do salário anual salário (USD)")
+
+plt.figure(figsize=(8,4))
+sns.histplot(df_limpo["usd"], bins = 50, kde=True)
+plt.title("Distribuição dos salários anuais")
+plt.xlabel("salário em usd")
+plt.ylabel("frequência")
 
 plt.show()
